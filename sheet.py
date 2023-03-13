@@ -1,3 +1,5 @@
+import functools
+
 ##################
 # Lists
 ##################
@@ -25,6 +27,9 @@ sublist = list_one[2:-2:2]
 list_one.sort(reverse=False)
 # return it
 sorted_list = sorted(list_one)
+# list comprehension
+list_comp = [x**2 for x in range(10) if x % 2 == 0]
+# elements, for structure, conditional if needed
 
 ##################
 # Tuples
@@ -81,7 +86,6 @@ e_dict = {}
 dict_one = {"one": 1, "two": 2, "three": 3, "four": 4}
 # lenhgt of a dictionary
 len(dict_one)
-
 # get value of a key
 # raise an error if the key is wrong
 dict_one["three"]
@@ -92,9 +96,11 @@ dict_one.get("five", 5)
 dict_one["three"] = 67
 # gets the value but if it does not exist sets it to a value
 dict_one.setdefault("five", 5)
-
 # delete
 del dict_one["one"]
+# dict comprehension
+list_comp = {x: x**2 for x in range(10) if x % 2 == 0}
+# key: value, for structure, conditional if needed
 
 ##################
 # Loops and conditionals
@@ -151,10 +157,18 @@ def my_decorator(funct_to_decorate):
     internal_state = None
     # the functions that do this are called CLOSURES
 
+    # Decorator that marks function as a wrapper/decorator
+    @functools.wraps(funct_to_decorate)
     def internal_funct(*args, **kwargs):
         return funct_to_decorate(internal_state, *args, **kwargs)
     return internal_funct()
 # decorators ara a type of closures that extend the functionality of another function
+
+
+# Declared function with a decorator
+@my_decorator
+def funct_example2():
+    return None
 
 ##################
 # Generators
@@ -167,11 +181,10 @@ def infinite_example(parameters):
         yield counter
         counter += 1
 
+
 ##################
 # Classes
 ##################
-
-
 # Declare a class and it can inherit from several parents
 class ClassName(ParentClass1, ParentClass2):
     class_variable = None
@@ -190,3 +203,15 @@ class ClassName(ParentClass1, ParentClass2):
     @staticmethod
     def static_method():
         return None
+
+
+##################
+# map, filter, reduce
+##################
+# executes the function in the first parameter in every  element of the second parameter that must be an iterator
+map(lambda x: x**2, list_one)
+# filters the list by executing the function in the first parameter in all elements of the iterator
+# and adding to the returned list only if the function returns True value
+filter(lambda x: x > 1, list_one)
+# comprise the elements of the iterator via the function given
+functools.reduce(lambda x, y: x*y, list_one, initial=1)
