@@ -99,12 +99,94 @@ del dict_one["one"]
 ##################
 # Loops and conditionals
 ##################
+# LOGIC OPERATORS: and, or, not
 # regular for is actually a for-each
-for i in range(3):
-    print(i)
-i=0
+for i, j in enumerate(range(5)):
+    # continue jumps to the next iteration
+    # break exist the loop
+    print("index", i, "value", j)
+# while loop
+i = 0
 while i < 2:
+    # continue jumps to the next iteration
+    # break exist the loop
     print(i)
     i += 1
+# if, else-if, else structure replace the switch in other languages
+if False:
+    pass
+elif True:
+    print("OK")
+else:
+    pass
+
+# variable assignation by terciary operator
+terc_var = "first" if True else "second"
+
+##################
+# Functions
+##################
 
 
+# funtion name and input parameters
+def funct_example(parameter, *args, example=None, **kwargs):
+    # *args accept all parameters as a tuple
+    # '=' allows a default value on named input parameters
+    # **kwargs accept all named parameters as a dictionary
+    """
+    Function description and documentation
+    :return:
+    """
+    return "Returned Value"
+
+
+# lambda functions are anonim functions
+print(lambda x: x**2)
+
+
+# functions are first class citizens
+# ie functions can be returned by others, used as parameters and stored on variables
+def my_decorator(funct_to_decorate):
+    # this internal state is preserved within the internal function
+    internal_state = None
+    # the functions that do this are called CLOSURES
+
+    def internal_funct(*args, **kwargs):
+        return funct_to_decorate(internal_state, *args, **kwargs)
+    return internal_funct()
+# decorators ara a type of closures that extend the functionality of another function
+
+##################
+# Generators
+##################
+# generators yield a result and pauses its process saving its internal state
+# Generators name and input parameters
+def infinite_example(parameters):
+    counter = 0
+    while True:
+        yield counter
+        counter += 1
+
+##################
+# Classes
+##################
+
+
+# Declare a class and it can inherit from several parents
+class ClassName(ParentClass1, ParentClass2):
+    class_variable = None
+
+    # initializer
+    def __init__(self, *args, **kwargs):
+        self.instance_variable = None
+
+    def instance_method(self):
+        return self.instance_variable
+
+    @classmethod
+    def class_method(cls):
+        return cls.class_variable
+
+    @staticmethod
+    def static_method():
+        return None
