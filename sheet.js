@@ -254,10 +254,181 @@ console.log(Object.values(object3));
 
 // Loops
 
+// for
+let str1 = '';
+for (let i = 0; i < 9; i++) {
+  str1 = str1 + i;
+}
+console.log(str1);
+// Expected output: "012345678"
+
+// for...in
+/* The for...in statement iterates over all enumerable string properties of an object (ignoring properties keyed by symbols), 
+including inherited enumerable properties. */
+const object = { a: 1, b: 2, c: 3 };
+for (const property in object) {
+  console.log(`${property}: ${object[property]}`);
+}
+// Expected output:
+// "a: 1"
+// "b: 2"
+// "c: 3"
+
+// for...of
+/* The for...of statement executes a loop that operates on a sequence of values sourced from an iterable object */
+const array6 = ['a', 'b', 'c'];
+for (const element of array6) {
+  console.log(element);
+}
+// Expected output: "a"
+// Expected output: "b"
+// Expected output: "c"
+
+// do...while
+/*  creates a loop that executes a specified statement until the test condition evaluates to false.
+The condition is evaluated after executing the statement, resulting in the specified statement executing at least once. */
+let res = '';
+let i = 0;
+do {
+  i = i + 1;
+  res = res + i;
+} while (i < 5);
+console.log(res);
+// Expected output: "12345"
+
+// while
+/*  creates a loop that executes a specified statement as long as the test condition evaluates to true.
+The condition is evaluated before executing the statement. */
+let n = 0;
+while (n < 3) {
+  n++;
+}
+console.log(n);
+// Expected output: 3
+
+// break
+/* terminates the current loop, switch, or label statement
+ and transfers program control to the statement following the terminated statement. */
+ let j = 0;
+ while (JSON < 6) {
+   if (i === 3) {
+     break;
+   }
+   j = j + 1;
+ }
+ console.log(j);
+ // Expected output: 3
+
+ // continue
+ /* terminates execution of the statements in the current iteration of the current or labeled loop,
+and continues execution of the loop with the next iteration. */
+let text = '';
+for (let i = 0; i < 10; i++) {
+  if (i === 3) {
+    continue;
+  }
+  text = text + i;
+}
+console.log(text);
+// Expected output: "012456789"
 
 
-// If else and Switch
+// If else 
+function testNum(a) {
+    let result;
+    if (a > 0) {
+      result = 'positive';
+    } else {
+      result = 'NOT positive';
+    }
+    return result;
+  }
+  console.log(testNum(-5));
+  // Expected output: "NOT positive"
+
+/* Multiple if...else statements can be nested to create an else if clause. */
+if (condition1)
+  statement1
+else if (condition2)
+  statement2
+else if (condition3)
+  statement3
+// …
+else
+  statementN
+
+// switch
+/*The switch statement evaluates an expression, matching the expression's value against a series of case clauses,
+and executes statements after the first case clause with a matching value, until a break statement is encountered.
+The default clause of a switch statement will be jumped to if no case matches the expression's value. */
+const expr = 'Papayas';
+switch (expr) {
+  case 'Oranges':
+    console.log('Oranges are $0.59 a pound.');
+    break;
+  case 'Mangoes':
+  case 'Papayas':
+    console.log('Mangoes and papayas are $2.79 a pound.');
+    // Expected output: "Mangoes and papayas are $2.79 a pound."
+    break;
+  default:
+    console.log(`Sorry, we are out of ${expr}.`);
+}
+// Expected output: "Mangoes and papayas are $2.79 a pound."
+
+/* The switch (true) pattern as an alternative to if...else is especially useful if you want to utilize the fall-through behavior. */
+switch (true) {
+    case isSquare(shape):
+      console.log("This shape is a square.");
+    // Fall-through, since a square is a rectangle as well!
+    case isRectangle(shape):
+      console.log("This shape is a rectangle.");
+    case isQuadrilateral(shape):
+      console.log("This shape is a quadrilateral.");
+      break;
+    case isCircle(shape):
+      console.log("This shape is a circle.");
+      break;
+  }
 
 
+// try...catch
+/* The try...catch statement is comprised of a try block and either a catch block, a finally block, or both.
+The code in the try block is executed first, and if it throws an exception, the code in the catch block will be executed.
+The code in the finally block will always be executed before control flow exits the entire construct. */
+let x = document.getElementById("mynum").value; // get input value
+try { 
+if(x == "")  throw "empty";                 // error cases
+if(isNaN(x)) throw "not a number";
+x = Number(x);
+if(x > 10)   throw "too high";
+}
+catch(err) {                                // if there's an error
+document.write("Input is " + err);          // output error
+console.error(err);                         // write the error in console
+}
+finally {
+document.write("</br />Done");              // executed regardless of the try / catch result
+}
 
-//JSON
+
+// JSON
+/* JavaScript Object Notation (JSON) is a standard text-based format for representing structured data based on JavaScript object syntax.*/
+
+// JSON.parse()
+const json = '{"result":true, "count":42}';
+const obj = JSON.parse(json);
+console.log(obj.count);
+// Expected output: 42
+console.log(obj.result);
+// Expected output: true
+
+//JSON.stringify()
+console.log(JSON.stringify({ x: 5, y: 6 }));
+// Expected output: "{"x":5,"y":6}"
+console.log(JSON.stringify([new Number(3), new String('false'), new Boolean(false)]));
+// Expected output: "[3,"false",false]"
+console.log(JSON.stringify({ x: [10, undefined, function(){}, Symbol('')] }));
+// Expected output: "{"x":[10,null,null,null]}"
+console.log(JSON.stringify(new Date(2006, 0, 2, 15, 4, 5)));
+// Expected output: ""2006-01-02T15:04:05.000Z""
